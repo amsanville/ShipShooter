@@ -79,7 +79,7 @@ Ship::~Ship() {}
 // EXTERNAL ALGORITHMS ////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 // VECTORS CROSS
-bool vectorsCross(const std::vector<float>& x1, const std::vector<float>& y1, const std::vector<float>& x2, const std::vector<float>& y2, const float tol = pow(10.f, -6.f)) {
+bool vectorsCross(const std::vector<float>& x1, const std::vector<float>& y1, const std::vector<float>& x2, const std::vector<float>& y2, const float tol) {
 	bool cross = false; //!< Return variable for detecting whether they cross
 
 	// Baseline check

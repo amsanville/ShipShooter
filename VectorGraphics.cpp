@@ -33,9 +33,9 @@ VectorGraphics::VectorGraphics(const std::vector<float>& new_xBase, const std::v
 VectorGraphics::~VectorGraphics() {}
 
 // DRAW
-void VectorGraphics::draw(const float xPos, const float yPos, const float angle) {
+void VectorGraphics::draw(const float xPos, const float yPos, const float angle, const float scale) {
 	// Transform the base
-	transform(xBase, yBase, xPos, yPos, angle, xCurr, yCurr);
+	transform(xBase, yBase, xCurr, yCurr, xPos, yPos, angle, scale);
 
 	// Set the render draw color
 	SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 255);
@@ -49,9 +49,9 @@ void VectorGraphics::draw(const float xPos, const float yPos, const float angle)
 }
 
 // DRAW DEBUG
-void VectorGraphics::drawDebug(const float xPos, const float yPos, const float angle) {
+void VectorGraphics::drawDebug(const float xPos, const float yPos, const float angle, const float scale) {
 	// Transform the base
-	transform(xBase, yBase, xPos, yPos, angle, xCurr, yCurr);
+	transform(xBase, yBase, xCurr, yCurr, xPos, yPos, angle);
 
 	// Draw the connecting lines in white
 	SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 255);
@@ -73,17 +73,17 @@ void VectorGraphics::drawDebug(const float xPos, const float yPos, const float a
 ///////////////////////////////////////////////////////////////////////////////
 
 // TRANSFORM
-void transform(const std::vector<float>& xBase, const std::vector<float>& yBase, const float xPos, const float yPos, const float angle, std::vector<float>& xFinal, std::vector<float>& yFinal) {
+void transform(const std::vector<float>& xBase, const std::vector<float>& yBase, std::vector<float>& xFinal, std::vector<float>& yFinal, const float xPos, const float yPos, const float angle, const float scale) {
 	for (size_t i = 0; i < xBase.size(); i++) {
-		xFinal[i] = xBase[i] * cos(angle) - yBase[i] * sin(angle) + xPos;
-		yFinal[i] = xBase[i] * sin(angle) + yBase[i] * cos(angle) + yPos;
+		xFinal[i] = scale * (xBase[i] * cos(angle) - yBase[i] * sin(angle)) + xPos;
+		yFinal[i] = scale * (xBase[i] * sin(angle) + yBase[i] * cos(angle)) + yPos;
 	}
 }
 
 // TRANSFORM WEIRD
-void transformWeird(const std::vector<float>& xBase, const std::vector<float>& yBase, const float xPos, const float yPos, const float angle, std::vector<float>& xFinal, std::vector<float>& yFinal) {
+void transformWeird(const std::vector<float>& xBase, const std::vector<float>& yBase, std::vector<float>& xFinal, std::vector<float>& yFinal, const float xPos, const float yPos, const float angle, const float scale) {
 	for (size_t i = 0; i < xBase.size(); i++) {
-		xFinal[i] = xBase[i] * cos(angle) - yBase[i] * sin(angle) + xPos;
-		yFinal[i] = xBase[i] * sin(angle) - yBase[i] * cos(angle) + yPos;
+		xFinal[i] = scale * (xBase[i] * cos(angle) - yBase[i] * sin(angle)) + xPos;
+		yFinal[i] = scale * (xBase[i] * sin(angle) - yBase[i] * cos(angle)) + yPos;
 	}
 }

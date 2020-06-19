@@ -33,13 +33,13 @@ public:
 	@param yPos The y-position for translation.
 	@param angle The final angle. Note: angles based on screen coordinate system (0 horizontal to the right with positive values increasing clockwise). Angles should be in radians.
 	*/
-	void draw(const float xPos, const float yPos, const float angle);
+	void draw(const float xPos, const float yPos, const float angle = 0.f, const float scale = 1.f);
 
 	//! Draw for debugging
 	/*!
 	Uses the same method as draw but highlights all the vertices in red.
 	*/
-	void drawDebug(const float xPos, const float yPos, const float angle);
+	void drawDebug(const float xPos, const float yPos, const float angle = 0.f, const float scale = 1.f);
 };
 
 //! Transform
@@ -53,7 +53,7 @@ Creates a transformed copy of the provided base vectors based on the given rotat
 @param xFinal The transformed x-values of the vectors
 @param yFinal The transformed y-values of the vectors
 */
-void transform(const std::vector<float>& xBase, const std::vector<float>& yBase, const float xPos, const float yPos, const float angle, std::vector<float>& xFinal, std::vector<float>& yFinal);
+void transform(const std::vector<float>& xBase, const std::vector<float>& yBase, std::vector<float>& xFinal, std::vector<float>& yFinal, const float xPos = 0.f, const float yPos = 0.f, const float angle = 0.f, const float scale = 1.f);
 
 //! Transform - weird
 /*!
@@ -66,4 +66,4 @@ From a sign error bug, I accidentally created a weird spinning animation. This i
 @param xFinal The transformed x-values of the vectors
 @param yFinal The transformed y-values of the vectors
 */
-void transformWeird(const std::vector<float>& xBase, const std::vector<float>& yBase, const float xPos, const float yPos, const float angle, std::vector<float>& xFinal, std::vector<float>& yFinal);
+void transformWeird(const std::vector<float>& xBase, const std::vector<float>& yBase, std::vector<float>& xFinal, std::vector<float>& yFinal, const float xPos = 0.f, const float yPos = 0.f, const float angle = 0.f, const float scale = 1.f);

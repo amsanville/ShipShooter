@@ -178,7 +178,7 @@ Inefficient algorithm based on point-slope form. The idea is that I can turn the
 @param tol The tolerance for being too close to zero to avoid dividing by small numbers.
 @return True if the vectors cross
 */
-bool vectorsCross(const std::vector<float>& x1, const std::vector<float>& y1, const std::vector<float>& x2, const std::vector<float>& y2, const float tol = pow(10.f, -6.f));
+bool vectorsCross(const std::vector<float>& x1, const std::vector<float>& y1, const std::vector<float>& x2, const std::vector<float>& y2, const float tol = 0.000001f);
 
 //! Line Segment Crossing Algorithm
 /*!

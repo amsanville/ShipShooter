@@ -9,15 +9,14 @@
 
 /* TODOs
 Game - Create state management system
-Game - Better UI
-State - update documentation
-TestState0 - Implement UI for controlling the ship/game loop 
-TestState0 - Update documentation
-GameObject - Use Constructors to manage the graphics systems
+TestState0 - Better UI
 GameObject - Do I even need polymorphism?
-SpriteGraphics - The whole things (see lazyfoo on how to do loading, clipping, blitting, etc.)
+SpriteGraphics - The whole thing (see lazyfoo on how to do loading, clipping, blitting, etc.)
 VectorGraphics - Scaling 
 VectorGraphics - Throw Exception Properly
+main - test collisions algorithm
+main - settings file
+makefile - actually write it
 */
 
 //! Test Collision Algorithms
@@ -29,13 +28,10 @@ void testCollisions() {
 }
 
 int main(int argc, char* argv[]) {
-
-    /*
     // Create the game
-    Game asteroids;
-    asteroids.init("Asteroids", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, false);
-    asteroids.gameLoop();
-    */
+    Game testGame;
+    testGame.init("Test Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, false);
+    testGame.gameLoop();
 
     return 0;
 }
