@@ -208,3 +208,32 @@ int TestState0::runGame() {
 	}
 	return -1;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// TEST STATE 1 ///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+TestState1::TestState1() {
+	player = Ship();
+	bullets = std::vector<Bullet>();
+}
+
+TestState1::~TestState1() {
+
+}
+
+int TestState1::runGame() {
+
+}
+
+bool TestState1::handleEvents() {
+
+}
+
+void TestState1::update(const int frameDelay) {
+
+}
+
+void TestState1::render() {
+
+}

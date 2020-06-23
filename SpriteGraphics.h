@@ -23,12 +23,23 @@ public:
 	*/
 	bool load(char* filename);
 
-	//! Draw
-	/*!
-	Draws the sprite in the position and at the angle provided.
+	//! Update
+	/*! TODO
 	@param xPos The x-position desired for the sprite
 	@param yPos The y-position desired for the sprite
 	@angle angle The angle the sprite should be rendered at.
 	*/
-	void draw(const float xPos, const float yPos, const float angle = 0.0f);
+	void update(const float xPos, const float yPos, const float angle = 0.0f);
+
+	//! Collision detection
+	/*!
+	TODO
+	*/
+	bool collide(const SpriteGraphics& otherGraphics);
+
+	//! Draw
+	/*! TODO
+	Draws the sprite in the position and at the angle provided.
+	*/
+	void draw();
 };

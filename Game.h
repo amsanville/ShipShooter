@@ -146,6 +146,17 @@ public:
 	int runGame();
 };
 
+class TestState1 : public State {
+protected:
+	bool handleEvents();
+	void update(const int frameDelay);
+	void render();
+public:
+	TestState1();
+	~TestState1();
+	int runGame();
+};
+
 /*
 class MainMenu : public State {
 public:

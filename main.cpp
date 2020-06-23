@@ -24,6 +24,9 @@ makefile - actually write it
 Test the code for the two different collision algorithms written.
 */
 void testCollisions() {
+    std::vector<float> xBase1;
+    std::vector<float> yBase1;
+    VectorGraphics test1 = VectorGraphics(xBase1, yBase1);
 
 }
 

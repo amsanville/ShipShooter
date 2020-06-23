@@ -121,76 +121,58 @@ public:
 	@return The y-velocity of the Game Object.
 	*/
 	float getYVel() const;
+	
+	///////////////////////////////////////////////////////////////////////////
+	// COLLISIONS /////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	//! TODO
+	bool collide(GameObject& secondObject);
 };
 
-//! Ship Class
-/*!
-Player ship, meant to encapsulate all the behavior that the player's ship will need. Basic vector graphic is meant to be a triangle.
-*/
+///////////////////////////////////////////////////////////////////////////////
+// CHILD CLASSES //////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+// Each of these child classes is meant to create a namespace for shared memory
+// between the same type of objects. The idea is that each class has some sort
+// of representation that will need to be recreated over and over again.
+
+//! Ship
 class Ship : public GameObject {
 private:
 	static const std::vector<float> xBase; //!< Base shape for rendering, x-values of vectors
 	static const std::vector<float> yBase; //!< Base shape for rendering, y-values of vectors
 public:
-	//! Constructor
-	/*!
-	// TODO
-	*/
 	Ship();
-
-	//! Destructor
-	/*!
-	// TODO
-	*/
 	~Ship();
 };
 
-/*
-class Bullet {
+//! Bullet
+class Bullet : public GameObject {
 private:
+	static const std::vector<float> xBase; //!< x-values of base shape for the bullets
+	static const std::vector<float> yBase; //!< y-values of base shape for the bullets
 public:
+	Bullet();
+	~Bullet();
 };
 
-class Asteroid {
+//! Asteroid
+class Asteroid :public GameObject {
 private:
+	static const std::vector<float> xBase; //!< x-values of base shape for the particles
+	static const std::vector<float> yBase; //!< y-values of base shape for the particles
 public:
+	Asteroid();
+	~Asteroid();
 };
 
-class Alien {
+//! Particle
+class Particle {
 private:
+	static const std::vector<float> xBase; //!< x-values of base shape for the particles
+	static const std::vector<float> yBase; //!< y-values of base shape for the particles
 public:
+	Particle();
+	~Particle();
 };
-*/
 
-///////////////////////////////////////////////////////////////////////////////
-// EXTERNAL ALGORITHMS ////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-// Note: these are external because they can be applied more generally. The
-// idea here is to explore different collision algorithms.
-
-//! Check if provided vectors Cross
-/*!
-Inefficient algorithm based on point-slope form. The idea is that I can turn the vectors into lines and see where the lines intersect. If the lines intersect within the domain of each vector, then the vectors do cross. To avoid dividing by small numbers, a lot of conditionals were added.
-@param x1 The x-coordinates of the first vector
-@param y1 The y-coordinates of the first vector
-@param x2 The x-coordinates of the second vector
-@param y2 The y-coordiantes of the second vector
-@param tol The tolerance for being too close to zero to avoid dividing by small numbers.
-@return True if the vectors cross
-*/
-bool vectorsCross(const std::vector<float>& x1, const std::vector<float>& y1, const std::vector<float>& x2, const std::vector<float>& y2, const float tol = 0.000001f);
-
-//! Line Segment Crossing Algorithm
-/*!
-This algorithm is based on the relative orientation of the end points. First, form a triangle using the two end points segment AB and one of the end points of the segment CD. As I move A-B-C, the orientation falls under one of three cases, clockwise, counter-clockwise, or collinear. Collinear means they intersect, at exactly point C. By checking the triangle formed with point D (A-B-D) and comparing it's orientation to that of the first triangle, I can determine intersection. If the orientations are the same, there is no intersection. If the orientations are different, there is an intersection.
-
-Next, to see find the orientation of each triangle, I compare the slope of AB to the slope of AC. If the slope from A to B is larger than the slope from A to C, the triangle is oriented clockwise. The opposite is true of the opposite condition. Note, collinear, would have the slopes be exactly equal. Because this is meant to be a collision algorithm in a dynamic system and this is floating point arithmetic, this case is ignored. To avoid dividing potentially dividing by a small number, I multiply both sides of the inequality by the bottom number. Finally, by applying a XOR gate, I get intersection.
-
-To see how this works, I suggest drawing it out on a piece of paper. I pulled this algorithm from the internet and take no credit for it's creation. The implementation, however, is mine.
-@param x1 The x-coordinates of the first vector
-@param y1 The y-coordinates of the first vector
-@param x2 The x-coordinates of the second vector
-@param y2 The y-coordiantes of the second vector
-@return True if the vectors cross
-*/
-bool linesCross(const std::vector<float>& x1, const std::vector<float>& y1, const std::vector<float>& x2, const std::vector<float>& y2);
